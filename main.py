@@ -5,7 +5,10 @@ from scan import scan_repo
 from summary import summarize_file
 from readme import generate_readme
 
+# max files 30 because i think this project is better suited for smaller repos, will test on larger directories later.
 MAX_FILES = 30
+
+# cache folder to speed things up
 CACHE_DIR = Path(__file__).parent / "cache"
 
 def load_cache(cache_path):
@@ -45,6 +48,8 @@ def main(repo_path):
     print("\nGenerating README...")
     readme = generate_readme(repo_path.name, repo_path, config_files, all_files, summaries)
 
+    # for now im exporting to "README.generated", in case something goes wrong, i dont wanna overrite the actual readme file.
+    # This file can always be renamed to README.md, so i'll probably keep it this way.
     out = repo_path / "README.generated.md"
     out.write_text(readme, encoding="utf-8")
     print(f"Saved to {out}")

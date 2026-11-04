@@ -1,10 +1,14 @@
 from pathlib import Path
 
+# ignore the following files:
 SKIP_DIRS = {".git", "node_modules", "__pycache__", "venv", ".venv", "dist", "build"}
 SKIP_FILES = {"package-lock.json", "yarn.lock", "poetry.lock"}
+
+# scan these:
 CODE_EXTS = {".py", ".js", ".ts", ".java", ".go", ".rs", ".c", ".cpp", ".cs", ".rb", ".php", ".html", ".css", ".sql"}
 CONFIG_FILES = {"package.json", "requirements.txt", "pyproject.toml", "Dockerfile", "Makefile", "README.md"}
 
+# scan all the files in the given directory, this is called in main.
 def scan_repo(root):
     root = Path(root)
     code_files, config_files = [], []
@@ -20,13 +24,3 @@ def scan_repo(root):
             code_files.append(path)
 
     return config_files, code_files
-
-if __name__ == "__main__":
-    import sys
-    config, code = scan_repo(sys.argv[1])
-    print("CONFIG FILES:")
-    for f in config:
-        print(" ", f)
-    print(f"\nCODE FILES ({len(code)}):")
-    for f in code:
-        print(" ", f, f"({f.stat().st_size} bytes)")
