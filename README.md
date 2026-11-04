@@ -2,44 +2,38 @@
 
 ## Overview
 
-`readme` is a Python project that automates the generation of a README.md file based on a given repository. The tool processes the repository, extracts relevant files, summarizes the content of each file, and generates a comprehensive README.md file that includes sections such as Overview, Features, Installation, Usage, and Project Structure. The generated README.md file is stored in the repository directory for easy reference.
+`readme` is a utility project that facilitates the generation of a `README.md` file for a project by reading and summarizing its configuration files and summaries of files. The project includes several scripts to help with scanning the repository, summarizing files, and generating a README.
 
 ## Features
 
-- **Automated README Generation**: `readme` scans a repository, extracts important files, and generates a detailed README.md file.
-- **AI-based Summary**: Each file's content is summarized using an AI model, providing a concise overview of the file's main functions, classes, and purpose.
-- **User-Friendly Interface**: The tool is designed to be simple and easy to use, requiring minimal configuration.
-
-## Installation
-
-To install `readme`, follow these steps:
-
-1. **Clone the Repository**: Clone the `readme` repository from GitHub.
-2. **Install Dependencies**: Install the required Python dependencies using `pip`:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Configure the AI Model**: If you want to use an AI model for file summarization, configure it by setting up the Ollama model and ensuring it's accessible.
+- **Configuration Files**: The project reads configuration files to extract relevant information for the `README.md`.
+- **File Summaries**: It generates summaries for code files using the Ollama language model.
+- **README Generation**: The script combines the project's overview, features, and usage instructions to create a comprehensive `README.md`.
+- **Installation Steps**: Provides installation instructions for the project.
+- **Project Structure**: Summarizes the project's directory structure.
 
 ## Usage
 
-To use `readme`, navigate to the repository directory and run the following command:
+To use the `readme` project, follow these steps:
 
-```bash
-python main.py /path/to/repository
-```
+1. **Install Ollama**: Ensure you have the Ollama language model installed. You can download it from the [Ollama GitHub repository](https://github.com/ollama/ollama).
+2. **Clone the Repository**: Clone the `readme` repository to your local machine.
+3. **Run the Script**: Execute the `readme.py` script from the project directory. It will generate a `README.md` file based on the configuration files and summaries.
+4. **Review and Edit**: Review the generated `README.md` and make any necessary edits.
 
-This command will process the specified repository and generate a README.md file in the repository directory. The README.md file will contain a summary of each file in the repository.
+For more detailed usage instructions, refer to the project's documentation or source code.
+
+## Installation
+
+See project files for setup details.
 
 ## Project Structure
 
-The project directory contains the following files and directories:
-
-- `main.py`: The main entry point of the project.
-- `readme.py`: The script to generate the README.md file.
-- `scan.py`: The function to scan the repository and categorize files.
-- `summary.py`: The function to summarize file content.
-
-Each file is designed to handle its specific role in the project's automation process.
+```
+README.md
+config.py
+main.py
+readme.py
+scan.py
+summary.py
+```
