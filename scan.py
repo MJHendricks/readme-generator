@@ -4,7 +4,7 @@ from pathlib import Path
 SKIP_DIRS = {".git", "node_modules", "__pycache__", "venv", ".venv", "dist", "build"}
 SKIP_FILES = {"package-lock.json", "yarn.lock", "poetry.lock"}
 
-# scan these:
+# scan these, maybe add more later, will do research.
 CODE_EXTS = {".py", ".js", ".ts", ".java", ".go", ".rs", ".c", ".cpp", ".cs", ".rb", ".php", ".html", ".css", ".sql"}
 CONFIG_FILES = {"package.json", "requirements.txt", "pyproject.toml", "Dockerfile", "Makefile", "README.md"}
 
@@ -22,5 +22,5 @@ def scan_repo(root):
             config_files.append(path)
         elif path.suffix in CODE_EXTS:
             code_files.append(path)
-
+            
     return config_files, code_files
