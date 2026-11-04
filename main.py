@@ -17,6 +17,7 @@ def load_cache(cache_path):
     return {}
 
 def main(repo_path):
+    # create cache folder if it doesnt exist
     repo_path = Path(repo_path).resolve()
     CACHE_DIR.mkdir(exist_ok=True)
     cache_path = CACHE_DIR / f"{repo_path.name}.json"
@@ -25,11 +26,13 @@ def main(repo_path):
     config_files, code_files = scan_repo(repo_path)
     all_files = config_files + code_files
 
-    # crude importance proxy: biggest files first, capped
+    # biggest files first, in case the project goes over the max file cap, bigger usually means more important.
+    # but not always. will maybe look into this later, and may add additional "skips".
     code_files = sorted(code_files, key=lambda f: f.stat().st_size, reverse=True)[:MAX_FILES]
 
     summaries = {}
     for f in code_files:
+        # check if files have been updated since last run, if it hasnt been changed, just reuse the cached summary
         key = str(f.relative_to(repo_path))
         mtime = f.stat().st_mtime
 
@@ -48,11 +51,12 @@ def main(repo_path):
     print("\nGenerating README...")
     readme = generate_readme(repo_path.name, repo_path, config_files, all_files, summaries)
 
-    # for now im exporting to "README.generated", in case something goes wrong, i dont wanna overrite the actual readme file.
+    # for now im exporting to "README.generated", in case something goes wrong, i dont wanna overwrite the actual readme file.
     # This file can always be renamed to README.md, so i'll probably keep it this way.
     out = repo_path / "README.generated.md"
     out.write_text(readme, encoding="utf-8")
     print(f"Saved to {out}")
 
+# remember to include directory when running main.py
 if __name__ == "__main__":
     main(sys.argv[1])
