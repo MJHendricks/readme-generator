@@ -6,7 +6,7 @@ SKIP_FILES = {"package-lock.json", "yarn.lock", "poetry.lock"}
 
 # scan these, maybe add more later, will do research.
 CODE_EXTS = {".py", ".js", ".ts", ".java", ".go", ".rs", ".c", ".cpp", ".cs", ".rb", ".php", ".html", ".css", ".sql"}
-CONFIG_FILES = {"package.json", "requirements.txt", "pyproject.toml", "Dockerfile", "Makefile", "README.md"}
+CONFIG_FILES = {"package.json", "requirements.txt", "pyproject.toml", "Dockerfile", "Makefile", "README.md","README.generated.md"}
 
 # scan all the files in the given directory, this is called in main.
 def scan_repo(root):
