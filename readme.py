@@ -1,17 +1,19 @@
 import ollama
 from config import MODEL
 
+# read the config files, returns a single string that gets pasted into the prompt.
 def read_config(config_files, max_chars=1500):
     parts = []
-    for f in config_files:
-        if f.name == "README.md":
+    for file in config_files:
+        if file.name == "README.md":
             continue
         try:
-            parts.append(f"--- {f.name} ---\n{f.read_text(encoding='utf-8')[:max_chars]}")
+            parts.append(f"--- {file.name} ---\n{file.read_text(encoding='utf-8')[:max_chars]}")
         except (UnicodeDecodeError, OSError):
             pass
     return "\n\n".join(parts)
 
+# onverts each file to a path relative to the repo root. max 40 items, will consider more if necessary.
 def build_structure(repo_path, files, max_items=40):
     paths = sorted(str(f.relative_to(repo_path)).replace("\\", "/") for f in files)
     text = "\n".join(paths[:max_items])
@@ -19,8 +21,9 @@ def build_structure(repo_path, files, max_items=40):
         text += f"\n... and {len(paths) - max_items} more files"
     return f"```\n{text}\n```"
 
+# collect file names, check if there are any files listing dependencies for easy install.
 def build_install(config_files):
-    names = {f.name for f in config_files}
+    names = {file.name for file in config_files}
     steps = []
     if "requirements.txt" in names:
         steps.append("pip install -r requirements.txt")
@@ -29,6 +32,11 @@ def build_install(config_files):
     if not steps:
         return "See project files for setup details."
     return "```\n" + "\n".join(steps) + "\n```"
+
+# the main function
+# joins all file summaries into a single text
+# sets the headings for each section, still looking into these, i want to be thorough without going into too much detail.
+# sends prompt through to the model 
 
 def generate_readme(repo_name, repo_path, config_files, all_files, summaries):
     config_text = read_config(config_files)
