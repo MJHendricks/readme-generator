@@ -51,8 +51,6 @@ This project was tested on 1 of my own projects for accuracy, the results have b
 - Config files in subfolders may produce incorrect install commands.
 
 ## Planned Improvements
-
-**Under consideration**:
-- Accepting github url's as args.
+- Accepting Github URLs as args.
 - Subfolder-aware install commands
 - Support more config file types
