@@ -2,7 +2,7 @@
 
 ## Overview
 
-The "readme-generator" project is a Python-based tool designed to analyze and summarize code files from a given repository using the Ollama language model. This tool helps generate a comprehensive README.md file that includes summaries of the code and metadata of the repository.
+The "readme-generator" project is a Python-based tool designed to analyze and summarize code files from a local folder using the Ollama language model. This tool helps generate a comprehensive README.md file that includes summaries of the code and metadata of the repository.
 
 ## Features
 
@@ -12,7 +12,7 @@ The "readme-generator" project is a Python-based tool designed to analyze and su
 - **Error Handling**: Ensure Ollama is running.
 - **File Processing**: It processes and summarizes files from a project repository to generate a README file.
 
-## Usage
+## Installation and Usage
 
 You need to have Python and the Ollama language model installed.
 
@@ -22,8 +22,11 @@ You need to have Python and the Ollama language model installed.
    ```bash
    pip install -r requirements.txt
    ```
-   
-3. **Download a model**: `ollama pull qwen2.5-coder:3b` 
+
+3. **Download a model**: 
+   ```bash
+   ollama pull qwen2.5-coder:3b
+   ```
 
 4. **Configure the Project**: Open config.py and set MODEL to the name of a model you have installed (run `ollama list` to see them).
 
@@ -32,25 +35,24 @@ You need to have Python and the Ollama language model installed.
    python main.py /path/to/your/project
    ```
 
-6. **Check the Output**: The README-gernerated.md file will be generated in your chosen directory. Review the generated filef or mistakes and make any necessary adjustments.
+6. **Check the Output**: The `README-gernerated.md` file will be generated in your chosen directory. Review the generated file for mistakes and make any necessary adjustments.
 
 **Important Notes**:
 - Ensure that the Ollama model is running and accessible on the network.
 
-## Installation
-
-```
-pip install -r requirements.txt
-```
-
-## Developer Notes
-
-**Project Accuracy**:
-
+## Project Accuracy
+This project was tested on 1 of my own projects for accuracy, the results have been tabulated below. Future changes that result in an increase in accuracy will be noted:
 
 | Repo | Invented | Wrong usage | Missed | Notes |
 |---|---|---|---|---|
 | readme-generator | 1 | 2 | 2 | Added a feature that does not exist. Misunderstood the config.py file. Forgot to include that running the project requires the path as an argument. Did not note that the file generated is called "README-generated.md". Instructions in incorrect order.|
 
-Some improvements I am considering:
- - Project scanning github repos via URL instead of only local files.
+## Known Limitations
+
+
+## Planned Improvements
+
+**Under consideration**:
+- Accepting github url's as args.
+- Subfolder-aware install commands
+- Support more config file types
