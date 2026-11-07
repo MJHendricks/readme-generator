@@ -1,5 +1,6 @@
 import sys
 import json
+import ollama
 from pathlib import Path
 from scan import scan_repo
 from summary import summarize_file
@@ -58,5 +59,10 @@ def main(repo_path):
     print(f"Saved to {out}")
 
 # remember to include directory when running main.py
-if __name__ == "__main__":
-    main(sys.argv[1])
+if __name__ == "__main__": 
+    try:
+        main(sys.argv[1])
+    except ConnectionError:
+        print("Could not reach Ollama, is it running?")
+    except ollama.ResponseError as e:
+        print(f"Ollama returned an error: {e}")
