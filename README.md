@@ -2,7 +2,7 @@
 
 ## Overview
 
-The "readme-generator" project is a Python-based tool designed to analyze and summarize code files from a local folder using the Ollama language model. This tool helps generate a comprehensive README.md file that includes summaries of the code and metadata of the repository.
+This is a Python-based tool designed to analyze and summarize code files from a local folder using the Ollama language model. This tool helps generate a comprehensive README.md file that includes summaries of the code and metadata of the repository.
 
 ## Features
 
@@ -48,7 +48,7 @@ This project was tested on 1 of my own projects for accuracy, the results have b
 | readme-generator | 1 | 2 | 2 | Added a feature that does not exist. Misunderstood the config.py file. Forgot to include that running the project requires the path as an argument. Did not note that the file generated is called "README-generated.md". Instructions in incorrect order.|
 
 ## Known Limitations
-
+- Config files in subfolders may produce incorrect install commands.
 
 ## Planned Improvements
 
