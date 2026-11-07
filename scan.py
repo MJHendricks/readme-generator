@@ -19,7 +19,8 @@ def scan_repo(root):
         if not path.is_file() or path.name in SKIP_FILES:
             continue
         if path.name in CONFIG_FILES:
-            config_files.append(path)
+            if path.parent == root:
+                config_files.append(path)
         elif path.suffix in CODE_EXTS:
             code_files.append(path)
             
