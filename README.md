@@ -14,28 +14,28 @@ The "readme-generator" project is a Python-based tool designed to analyze and su
 
 ## Usage
 
-You need to have Python and the Ollama language model installed. Follow these steps:
+You need to have Python and the Ollama language model installed.
 
-1. **Install Python and Ollama**: Ensure you have Python installed on your system. You can download and install Ollama from the [official website](https://ollama.ai/).
+1. **You can download and install Ollama** from the [official website](https://ollama.ai/).
 
 2. **Install Required Packages**: Install the necessary packages by running the following command in your terminal:
    ```bash
    pip install -r requirements.txt
    ```
+   
+3. **Download a model**: `ollama pull qwen2.5-coder:3b` 
 
-3. **Run the Main Script**: Execute the main script `main.py` to generate the README.md file.
+4. **Configure the Project**: Open config.py and set MODEL to the name of a model you have installed (run `ollama list` to see them).
+
+5. **Run the Main Script**: Execute the main script `main.py` with the path to your target directory as an argument.
    ```bash
-   python main.py
+   python main.py /path/to/your/project
    ```
 
-4. **Configure the Project**: Modify the `config.py` file to set the desired configuration for the Ollama model.
-
-5. **Check the Output**: The README.md file will be generated in the same directory as the script. Review the generated README.md file for the summaries and metadata of the repository.
+6. **Check the Output**: The README-gernerated.md file will be generated in your chosen directory. Review the generated filef or mistakes and make any necessary adjustments.
 
 **Important Notes**:
 - Ensure that the Ollama model is running and accessible on the network.
-- Adjust the cache settings in `config.py` to control how long cached results are stored.
-- Check the network and model errors in the output to ensure smooth operation.
 
 ## Installation
 
@@ -45,11 +45,12 @@ pip install -r requirements.txt
 
 ## Developer Notes
 
-Project Accuracy:
+**Project Accuracy**:
+
 
 | Repo | Invented | Wrong usage | Missed | Notes |
 |---|---|---|---|---|
-| readme-generator | 1 | 1 | 1 | Added a feature that does not exist. Misunderstood the config.py file. Did not mention that you need to install a model from Ollama and edit the config.py file |
+| readme-generator | 1 | 2 | 2 | Added a feature that does not exist. Misunderstood the config.py file. Forgot to include that running the project requires the path as an argument. Did not note that the file generated is called "README-generated.md". Instructions in incorrect order.|
 
 Some improvements I am considering:
  - Project scanning github repos via URL instead of only local files.
